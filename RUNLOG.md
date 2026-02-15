@@ -292,14 +292,6 @@ Downloading shards:   0%|           | 0/4 [00:00<?, ?it/s]
 
 **Result**: ✅ Benchmark runs successfully
 
-
-**Metrics Interpretation**:
-- **71.84% Accuracy**: Edge model (Qwen2.5-7B) performance alone
-- **100% Edge Ratio**: All queries handled by edge (no cloud API calls)
-- **0.301s TTFT**: Fast time to first token
-- **164.34 tokens/s**: Good throughput for CPU inference
-
-
 ### Issues for Upstream
 1. **Add retry to requirements.txt** - Simple one-line fix
 2. **Implement or document LadeSpecDecLLM** - Either create the class or remove from imports
