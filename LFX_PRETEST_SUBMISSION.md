@@ -489,7 +489,7 @@ I successfully reproduced the Ianvs cloud-edge collaborative inference for LLM e
 
 # Task 2B: Community Contribution — Pull Request
 
-**Pull Request:** [Add missing retry dependency to LLM example requirements](https://github.com/kubeedge/ianvs/pull/YOUR_PR_NUMBER)
+**Pull Request:** [Add missing retry dependency to LLM example requirements](https://github.com/kubeedge/ianvs/pull/359#pullrequestreview-3803282993)
 
 ## Summary
 
