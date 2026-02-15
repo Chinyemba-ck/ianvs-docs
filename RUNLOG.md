@@ -1,10 +1,4 @@
-# Ianvs Cloud-Edge LLM Example - Reproduction Report
-
-**Contributor**: Chinyemba Kalenga
-**Date**: February 14, 2026
-**Repository**: https://github.com/kubeedge/ianvs
-**Example**: cloud-edge-collaborative-inference-for-llm
-**Status**: ✅ Successfully reproduced with fixes
+# Task 2 (Required): Engineering — Run an Ianvs Cloud-Edge LLM Example
 
 ---
 
