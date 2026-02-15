@@ -83,36 +83,7 @@ cat examples/cloud-edge-collaborative-inference-for-llm/kaggle.json
 
 ---
 
-### Step 3: Build Docker Image (First Attempt)
-
-I attempted to build the Docker image without kaggle.json initially.
-
-```bash
-docker build -t ianvs-experiment-image-test ./examples/cloud-edge-collaborative-inference-for-llm/
-```
-
-#### ❌ Error 1: Missing Kaggle Credentials
-
-**Error Message**:
-```
-![Credentials prepared ](images/IMG[3].png)
-
-ERROR: failed to calculate checksum of ref: "/kaggle.json": not found
-```
-
-**Root Cause**: The Dockerfile expects `kaggle.json` in the same directory but the file was missing.
-
-**Solution**: I copied `kaggle.json` from my Downloads folder (see Step 2), then retried the build.
-
-**Result**: 
-![Build succeeded after adding kaggle.json ](images/IMG[4].png)
-![Build succeeded after adding kaggle.json ](images/IMG[5].png)
-
----
-
-### Step 4: Build Docker Image (Second Attempt)
-
-After copying kaggle.json, I retried the build.
+### Step 3: Build Docker Image
 
 ```bash
 docker build -t ianvs-experiment-image-test ./examples/cloud-edge-collaborative-inference-for-llm/
@@ -120,7 +91,6 @@ docker build -t ianvs-experiment-image-test ./examples/cloud-edge-collaborative-
 
 **Build Output**:
 ```
-[SCREENSHOT PLACEHOLDER - Docker build in progress]
 
 [+] Building 2145.3s (16/16) FINISHED
  => [10/11] RUN cd /ianvs && kaggle datasets download...
@@ -137,7 +107,7 @@ docker build -t ianvs-experiment-image-test ./examples/cloud-edge-collaborative-
 
 ---
 
-### Step 5: Start Container
+### Step 4: Start Container
 
 ```bash
 docker run -it ianvs-experiment-image-test /bin/bash
@@ -148,11 +118,10 @@ docker run -it ianvs-experiment-image-test /bin/bash
 (base) root@7406138bab5d:/ianvs#
 ```
 
-**Result**: ✅ Container started, inside /ianvs directory
 
 ---
 
-### Step 6: Activate Conda Environment
+### Step 5: Activate Conda Environment
 
 ```bash
 conda activate ianvs-experiment
@@ -164,11 +133,9 @@ python --version
 Python 3.8.20
 ```
 
-**Result**: ✅ Environment activated
-
 ---
 
-### Step 7: Verify Datasets and Cache
+### Step 6: Verify Datasets and Cache
 
 ```bash
 ls -lh dataset/mmlu-5-shot/test_data/
@@ -185,9 +152,11 @@ cache.json - 237M (pre-computed model responses)
 
 **Result**: ✅ Datasets and cache present
 
+![Container started, inside /ianvs directory, Environment set up](images/IMG[3].png)
+
 ---
 
-### Step 8: Set API Keys
+### Step 7: Set API Keys
 
 ```bash
 export OPENAI_BASE_URL="https://api.openai.com/v1"
@@ -195,21 +164,22 @@ export OPENAI_API_KEY=sk-proj-[REDACTED]
 echo $OPENAI_API_KEY
 ```
 
-**Result**: ✅ Environment variables set
-
 ---
 
-### Step 9: Run Benchmark (First Attempt)
+### Step 8: Run Benchmark (First Attempt)
 
 ```bash
 ianvs -f examples/cloud-edge-collaborative-inference-for-llm/benchmarkingjob.yaml
 ```
 
-#### ❌ Error 2: Missing 'retry' Module
+#### ❌ Error 1: Missing 'retry' Module
+
+![Error: Missing retry module](images/IMG[4].png)
+![Error: Missing retry module continued](images/IMG[5].png)
 
 **Error Message**:
 ```
-[SCREENSHOT PLACEHOLDER - Error 2: retry module missing]
+
 
 Traceback (most recent call last):
   File ".../models/api_llm.py", line 21, in <module>
@@ -229,21 +199,24 @@ pip list | grep retry
 # Output: retry  0.9.2
 ```
 
-**Result**: ✅ Package installed
+**Result**: 
+![Package installed ](images/IMG[6].png)
 
 ---
 
-### Step 10: Run Benchmark (Second Attempt)
+### Step 9: Run Benchmark (Second Attempt)
 
 ```bash
 ianvs -f examples/cloud-edge-collaborative-inference-for-llm/benchmarkingjob.yaml
 ```
 
-#### ❌ Error 3: Missing LadeSpecDecLLM Class
+#### ❌ Error 2: Missing LadeSpecDecLLM Class
+
+![Error: Missing LadeSpecDecLLM](images/IMG[7].png)
+![Error: Missing LadeSpecDecLLM continued](images/IMG[8].png)
 
 **Error Message**:
 ```
-[SCREENSHOT PLACEHOLDER - Error 3: LadeSpecDecLLM import error]
 
 Traceback (most recent call last):
   File ".../edge_model.py", line 21, in <module>
@@ -285,21 +258,22 @@ wc -l examples/cloud-edge-collaborative-inference-for-llm/testalgorithms/query-r
 # Output: 6
 ```
 
-**Why this works**: The placeholder satisfies the import statement. Since no current configuration uses the "LadeSpecDec" backend, the placeholder is never instantiated. If someone tries to use it, they get a clear error message.
+The placeholder satisfies the import statement. Since no current configuration uses the "LadeSpecDec" backend, the placeholder is never instantiated. If someone tries to use it, they get a clear error message.
 
-**Result**: ✅ Import error resolved
+**Result**: Import error resolved
 
 ---
 
-### Step 11: Run Benchmark (Third Attempt - Success!)
+### Step 10: Run Benchmark (Third Attempt - Success!)
 
 ```bash
 ianvs -f examples/cloud-edge-collaborative-inference-for-llm/benchmarkingjob.yaml
 ```
 
+![Benchmark starting successfully](images/IMG[9].png)
+
 **Output**:
 ```
-[SCREENSHOT PLACEHOLDER - Benchmark starting successfully]
 
 WARNING 02-14 19:28:20 _custom_ops.py:19] Failed to import from vllm._C with ImportError('libcuda.so.1: cannot open shared object file')
 
