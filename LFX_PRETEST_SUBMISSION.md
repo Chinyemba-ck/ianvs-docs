@@ -534,11 +534,19 @@ However, the `retry` package is not listed in `examples/cloud-edge-collaborative
 # References
 
 [1] Leviathan et al. "Fast Inference from Transformers via Speculative Decoding." ICML 2023. arXiv:2211.17192
+
 [2] Chen et al. "Accelerating Large Language Model Decoding with Speculative Sampling." arXiv:2302.01318
+
 [3] KubeEdge Ianvs: https://github.com/kubeedge/ianvs
+
 [4] Ianvs Cloud-Edge LLM Example: https://github.com/kubeedge/ianvs/tree/main/examples/cloud-edge-collaborative-inference-for-llm
+
 [5] Wang et al. "SLED: A Speculative LLM Decoding Framework for Efficient Edge Serving." SEC '25. arXiv:2506.09397
+
 [6] Yu et al. "DSD: Distributed Speculative Decoding for Edge-Cloud Large Models." arXiv:2511.21669
+
 [7] Zhang et al. "EdgeSpec: Efficient LLM Inference over Heterogeneous Edge Networks with Speculative Decoding." arXiv:2510.11331
+
 [8] Bolot. "End-to-End Packet Delay and Loss Behavior in the Internet." ACM SIGCOMM '93, pp. 289-298.
+
 [9] Paxson et al. "Computing TCP's Retransmission Timer." RFC 6298, June 2011.
